@@ -2,7 +2,14 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
-	'bins.insert':
+	'bins.insert': function() {
+		return Bins.insert({
+			createdAt: new Date(),
+			content: '',
+			sharedWith: [],
+			ownerId: this.userId
+		});
+	}
 });
 
 export const Bins = new Mongo.Collection('bins');
